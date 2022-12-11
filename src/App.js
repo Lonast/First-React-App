@@ -26,7 +26,7 @@ function App(props) {
       setBtn("New Game");
     }
   }, [dice]);
-
+  localStorage.setItem("time", " , ");
   function generateNewDie() {
     return {
       value: Math.floor(Math.random() * 10 + 1),
@@ -115,21 +115,23 @@ function App(props) {
           {btn}
         </button>
       )}
-      {getBst && (
-        <div className="tim">
-          <h1 className="title">Your Time</h1>
-          {localStorage
-            .getItem("time")
-            .split(",")
-            .map((item, index) => {
-              return (
-                <p className="p-time" key={index}>
-                  {item}
-                </p>
-              );
-            })}
-        </div>
-      )}
+      {best !== []
+        ? getBst && (
+            <div className="tim">
+              <h1 className="title">Your Time</h1>
+              {localStorage
+                .getItem("time")
+                .split(",")
+                .map((item, index) => {
+                  return (
+                    <p className="p-time" key={index}>
+                      {item}
+                    </p>
+                  );
+                })}
+            </div>
+          )
+        : getBst && <p></p>}
       <h3 onClick={getStats} className="time">
         Your Time
       </h3>
